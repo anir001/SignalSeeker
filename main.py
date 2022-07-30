@@ -7,20 +7,18 @@ from termcolor import colored
 
 os.system('color')
 
-VER = 'v1.0'
+VER = 'v1.0.0'
 
 PDF_OUTPUT_DIR = 'pdf_output'
 TMP_DIR = 'tmp'
 HEADER = f"""
-
   #####                                    #####                                     
- #     # #  ####  #    #   ##   #         #     # ###### ###### #    # ###### #####  
+ #     # #  ####  #    #   ##   #         #     # ###### ###### #    # ###### ##### 
  #       # #    # ##   #  #  #  #         #       #      #      #   #  #      #    # 
   #####  # #      # #  # #    # #          #####  #####  #####  ####   #####  #    # 
-       # # #  ### #  # # ###### #               # #      #      #  #   #      #####  
- #     # # #    # #   ## #    # #         #     # #      #      #   #  #      #   #  
-  #####  #  ####  #    # #    # ######     #####  ###### ###### #    # ###### #    # {VER}
-                                                                                     
+       # # #  ### #  # # ###### #               # #      #      #  #   #      ##### 
+ #     # # #    # #   ## #    # #         #     # #      #      #   #  #      #   # 
+  #####  #  ####  #    # #    # ######     #####  ###### ###### #    # ###### #    # {VER}                                                                             
 """
 
 
@@ -31,10 +29,16 @@ def main():
     if not os.path.exists(TMP_DIR):
         os.makedirs(TMP_DIR)
 
-    print(colored(HEADER, 'red'))
+    print(colored(HEADER, 'cyan'))
 
     if len(sys.argv) <= 1:
-        print("Podaj argumenty: plik.pdf to_find.txt start_page stop_page")
+        print("python main.py source to_find start_page stop_page")
+        print("""
+    file        Specifies the file to search
+    to_find     Specifies the signal list file to search for
+    start_page  The beginning of the search
+    stop_page   End of search
+        """)
         sys.exit(0)
     else:
         PATH_PDF = sys.argv[1]
