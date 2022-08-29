@@ -7,7 +7,7 @@ from termcolor import colored
 
 os.system('color')
 
-VER = 'v1.0.0'
+VER = 'v1.0.1'
 
 PDF_OUTPUT_DIR = 'pdf_output'
 TMP_DIR = 'tmp'
@@ -32,7 +32,7 @@ def main():
     print(colored(HEADER, 'cyan'))
 
     if len(sys.argv) <= 1:
-        print("python main.py source to_find start_page stop_page")
+        print("python main.py file to_find start_page stop_page")
         print("""
     file        Specifies the file to search
     to_find     Specifies the signal list file to search for
