@@ -5,6 +5,8 @@ from util.img_procces import merge_and_save
 from util.to_pdf import save_to_pdf
 from termcolor import colored
 
+import time
+
 os.system('color')
 
 VER = 'v1.0.1'
@@ -83,5 +85,26 @@ def main():
         print(colored("Finish OK", 'green'))
 
 
+def measure_time(func):
+    """
+    Funkcja mierząca czas wykonania funkcji.
+
+    Parametry:
+    - func: funkcja do zmierzenia czasu
+    Zwraca:
+    - Czas wykonania funkcji w sekundach
+    """
+    start_time = time.time()
+    func()
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    
+    return elapsed_time
+
 if __name__ == '__main__':
-    main()
+    steps = 1
+    elapsed_time = 0
+    for _ in range(steps):
+        elapsed_time += measure_time(main)
+
+    print(f"sredni czas wykonania: {elapsed_time / steps} sekundy")
