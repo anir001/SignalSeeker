@@ -10,11 +10,13 @@ def total_width(arr):
     :param arr:
     :return:
     """
-    total = []
-    for w in arr:
-        if w is not None:
-            total.append(w.width)
-    return sum(total)
+    # total = []
+    # for w in arr:
+    #     if w is not None:
+    #         total.append(w.width)
+    # return sum(total)
+    total = sum([w.width for w in arr if w is not None])
+    return total
 
 
 def save_img(img, page):
