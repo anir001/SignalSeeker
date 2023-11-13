@@ -11,7 +11,7 @@ class Seeker(object):
         self.shift_y_up = 110
         self.shift_y_down = 520
 
-    def search(self, signal, page: fitz.Page):
+    def search(self, signal, page: fitz.Page, no_page):
         rects = page.search_for(signal)
         if len(rects) != 0:  # jeżeli brak wyników return None
             for rect in rects:
@@ -19,7 +19,7 @@ class Seeker(object):
                     self.rect = rect
                     self._shift_coord()
 
-                    return Signal(signal, self.rect, page)
+                    return Signal(signal, self.rect, page, no_page)
         else:
             return None
 

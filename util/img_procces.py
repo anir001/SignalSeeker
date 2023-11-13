@@ -36,7 +36,8 @@ def draw_frame(img):
     :return:
     """
     draw = ImageDraw.Draw(img)
-    draw.line(((img.width, 0), (img.width, img.height)), fill=(255, 0, 0), width=5)
+    draw.line(((img.width, 0), (img.width, img.height)),
+              fill=(255, 0, 0), width=5)
     return img
 
 
@@ -103,4 +104,3 @@ def add_footer(im, page, max_page, footer):
         fill=(0, 0, 0),
     )
     return im
-

@@ -9,18 +9,21 @@ from tkinter import *
 from tkinter import filedialog
 from tkinter import messagebox
 
-VER = 'v2.0.0'
+VER = 'v2.0.1'
 
 PDF_OUTPUT_DIR = 'pdf_output'
 TMP_DIR = 'tmp'
+
 
 def browse_pdf_file():
     file_path = filedialog.askopenfilename(filetypes=[("PDF files", "*.pdf")])
     pdf_file_path.set(file_path)
 
+
 def browse_to_find_file():
     file_path = filedialog.askopenfilename(filetypes=[("Text files", "*.txt")])
     to_find_file_path.set(file_path)
+
 
 def start_search():
     path_pdf = pdf_file_path.get()
@@ -52,16 +55,22 @@ def start_search():
     merge_and_save([x.get_screen() for x in signals], footer)
 
     print("PDF creating")
-    
+
     save_to_pdf(os.path.basename(path_pdf))
 
     duplicates, missing = engine.validate()
     if duplicates:
-        messagebox.showwarning("Warning", "Found duplicate signals:\n" + "\n".join(duplicates))
+        print(colored("Found duplicate signals:", 'yellow'))
+        for d in duplicates:
+            print(colored(f'# {d}', 'yellow'))
     if missing:
-        messagebox.showerror("Error", "Signals not found:\n" + "\n".join(missing))
+        print(colored("Signals not found:", 'red'))
+        for m in missing:
+            print(colored(f'# {m}', 'red'))
 
     messagebox.showinfo("Finish", "Finish OK")
+    print(colored("Finish OK", 'green'))
+
 
 root = Tk()
 root.title(f"Signal Seeker {VER}")
@@ -91,7 +100,8 @@ to_find_frame.pack()
 to_find_entry = Entry(to_find_frame, textvariable=to_find_file_path)
 to_find_entry.pack(side=LEFT, padx=5)
 
-to_find_button = Button(to_find_frame, text="Browse", command=browse_to_find_file)
+to_find_button = Button(to_find_frame, text="Browse",
+                        command=browse_to_find_file)
 to_find_button.pack(side=LEFT)
 
 start_page_label = Label(root, text="Start Page:")
@@ -110,4 +120,3 @@ start_button = Button(root, text="Start", command=start_search)
 start_button.pack(pady=10)
 
 root.mainloop()
-
